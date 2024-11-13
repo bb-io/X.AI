@@ -1,12 +1,12 @@
 ﻿using Blackbird.Applications.Sdk.Common;
 
-namespace Apps.App;
+namespace Apps.X.AI;
 
 public class Application : IApplication
 {
     public string Name
     {
-        get => "App";
+        get => "X.AI";
         set { }
     }
 

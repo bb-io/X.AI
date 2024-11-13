@@ -1,17 +1,27 @@
-﻿using Blackbird.Applications.Sdk.Common.Authentication;
+﻿using Apps.X.AI.Api;
+using Blackbird.Applications.Sdk.Common.Authentication;
 using Blackbird.Applications.Sdk.Common.Connections;
+using RestSharp;
 
-namespace Apps.App.Connections;
+namespace Apps.X.AI.Connections;
 
-public class ConnectionValidator: IConnectionValidator
+public class ConnectionValidator : IConnectionValidator
 {
     public async ValueTask<ConnectionValidationResponse> ValidateConnection(
         IEnumerable<AuthenticationCredentialsProvider> authenticationCredentialsProviders,
         CancellationToken cancellationToken)
     {
-        return new()
+        var client = new XaiRestClient(authenticationCredentialsProviders);
+        var request = new RestRequest("/api-key", Method.Get);
+
+        try
         {
-            IsValid = true
-        };
+            await client.ExecuteWithErrorHandling(request);
+            return new ConnectionValidationResponse { IsValid = true };
+        }
+        catch (Exception ex)
+        {
+            return new ConnectionValidationResponse { IsValid = false, Message = ex.Message };
+        }
     }
 }

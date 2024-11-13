@@ -1,6 +1,6 @@
-namespace Apps.App.Constants;
+namespace Apps.X.AI.Constants;
 
 public static class CredsNames
 {
-    public const string Name = "";
+
 }

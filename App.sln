@@ -1,5 +1,14 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apps.App", "Apps.App\Apps.App.csproj", "{EB25604E-8EBA-464E-BEDF-30EA95395AD3}"
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apps.X.AI", "Apps.App\Apps.X.AI.csproj", "{EB25604E-8EBA-464E-BEDF-30EA95395AD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppRunner", "AppRunner\AppRunner.csproj", "{D139DD20-B7B0-4BDD-A860-4A6F5CAA875F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EB25604E-8EBA-464E-BEDF-30EA95395AD3} = {EB25604E-8EBA-464E-BEDF-30EA95395AD3}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,5 +20,15 @@ Global
 		{EB25604E-8EBA-464E-BEDF-30EA95395AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB25604E-8EBA-464E-BEDF-30EA95395AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB25604E-8EBA-464E-BEDF-30EA95395AD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D139DD20-B7B0-4BDD-A860-4A6F5CAA875F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D139DD20-B7B0-4BDD-A860-4A6F5CAA875F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D139DD20-B7B0-4BDD-A860-4A6F5CAA875F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D139DD20-B7B0-4BDD-A860-4A6F5CAA875F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {360E8F7E-C927-4A45-8233-1409BFFD2976}
 	EndGlobalSection
 EndGlobal
