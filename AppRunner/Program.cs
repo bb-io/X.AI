@@ -50,7 +50,7 @@ namespace AppRunner
             var request = new CompletionRequest
             {
                 Model = "grok-beta",
-                Prompt = "Corruption",
+                Prompt = "Hello world",
                 MaxTokens = 50
             };
 
