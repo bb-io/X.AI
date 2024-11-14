@@ -11,9 +11,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Remove="image\**" />
-      <EmbeddedResource Remove="image\**" />
-      <None Remove="image\**" />
+      <None Remove="image\icon.jpg" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="image\icon.jpg">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
