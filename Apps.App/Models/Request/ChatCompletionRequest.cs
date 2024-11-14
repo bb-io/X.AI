@@ -4,20 +4,14 @@ using Newtonsoft.Json;
 
 namespace Apps.X.AI.Models.Request
 {
-    public class CompletionRequest
+    public class ChatCompletionRequest
     {
         [JsonProperty("model")]
         [StaticDataSource(typeof(ModelDataSourceHandler))]
         public string Model { get; set; }
 
-        [JsonProperty("prompt")]
-        public string Prompt { get; set; }
-
-        [JsonProperty("best_of")]
-        public int? BestOf { get; set; }
-
-        [JsonProperty("echo")]
-        public bool? Echo { get; set; }
+        [JsonProperty("messages")]
+        public List<Message> Messages { get; set; }
 
         [JsonProperty("frequency_penalty")]
         public double? FrequencyPenalty { get; set; }
@@ -37,6 +31,9 @@ namespace Apps.X.AI.Models.Request
         [JsonProperty("presence_penalty")]
         public double? PresencePenalty { get; set; }
 
+        [JsonProperty("response_format")]
+        public string? ResponseFormat { get; set; }
+
         [JsonProperty("seed")]
         public int? Seed { get; set; }
 
@@ -49,9 +46,6 @@ namespace Apps.X.AI.Models.Request
         [JsonProperty("stream_options")]
         public string? StreamOptions { get; set; }
 
-        [JsonProperty("suffix")]
-        public string? Suffix { get; set; }
-
         [JsonProperty("temperature")]
         public double? Temperature { get; set; }
 
@@ -61,4 +55,14 @@ namespace Apps.X.AI.Models.Request
         [JsonProperty("user")]
         public string? User { get; set; }
     }
+
+    public class Message
+    {
+        [JsonProperty("role")]
+        public string Role { get; set; }
+
+        [JsonProperty("content")]
+        public string Content { get; set; }
+    }
 }
+

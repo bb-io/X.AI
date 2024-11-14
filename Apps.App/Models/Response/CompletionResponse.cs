@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Apps.X.AI.Models.Request;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,9 @@ namespace Apps.X.AI.Models.Response
     {
         [JsonProperty("text")]
         public string Text { get; set; }
+
+        [JsonProperty("message")]
+        public Message Message { get; set; }
 
         [JsonProperty("index")]
         public int Index { get; set; }

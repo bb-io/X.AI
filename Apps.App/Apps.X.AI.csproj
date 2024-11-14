@@ -4,7 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Product>X.AI</Product>
+        <Product>X.AI [Beta]</Product>
         <Description>Description(describe the app)</Description>
         <Version>1.0.0</Version>
         <AssemblyName>Apps.XAI</AssemblyName>
