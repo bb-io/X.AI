@@ -12,8 +12,6 @@
 		<RootNamespace>Apps.X.AI</RootNamespace>
     </PropertyGroup>
 
-	
-
     <ItemGroup>
       <EmbeddedResource Include="image\icon.jpg">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
