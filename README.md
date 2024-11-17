@@ -31,7 +31,8 @@ Input Parameters:
 - Temperature: Adjust randomness in output (0 = deterministic, 1 = creative).
 - Top P: Controls nucleus sampling (optional).
 - Stop Sequences: Specify sequences to stop the completion.
-Use Case: Generate creative content, summarize text, or answer questions.
+  
+**Use Case:** Generate creative content, summarize text, or answer questions.
 
 2. Create Chat Completion
 Input Parameters:
@@ -42,7 +43,8 @@ Input Parameters:
 - **Top P:** Controls nucleus sampling (optional).
 - **Stop Sequences:** Specify sequences to stop the completion.
 - **User**
-Use Case: Chatbots, virtual assistants, or conversational AI.
+  
+**Use Case:** Chatbots, virtual assistants, or conversational AI.
 
 3. Create Embeddings
 Input Parameters:
@@ -50,7 +52,8 @@ Input Parameters:
 - **Input:** Text to be embedded.
 - **Dimensions:** Number of dimensions for the vector.
 - **Encoding Format:** Choose between float or base64.
-Use Case: Search engines, semantic analysis, or clustering.
+
+**Use Case:** Search engines, semantic analysis, or clustering.
 
 For more in-depth information about action consult the X.AI [API reference](https://docs.x.ai/api).
 
