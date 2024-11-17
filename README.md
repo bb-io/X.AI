@@ -9,21 +9,21 @@ The X.AI application allows users to integrate AI-driven completion and chat cap
 ## Before Setting Up
 
 Before you can connect and start using X.AI, ensure the following:
-1.You have an active [X.AI account](https://x.ai/) and API key. Visit X.AI API Documentation for more details.
-2.You are logged into your Blackbird.io environment.
+1. You have an active [X.AI account](https://x.ai/) and API key. Visit X.AI API Documentation for more details.
+2. You are logged into your Blackbird.io environment.
 
 ## Connecting
 
-1.Navigate to apps and search for X.AI. If you cannot find X.AI then click Add App in the top right corner, select X.AI and add the app to your Blackbird environment.
-2.Click Add Connection to set up the integration.
-3.Name your connection for future reference e.g. 'My X.AI connection'.
-4.Enter your API key. You can generate one in your X.AI account settings.
+1. Navigate to apps and search for X.AI. If you cannot find X.AI then click Add App in the top right corner, select X.AI and add the app to your Blackbird environment.
+2. Click Add Connection to set up the integration.
+3. Name your connection for future reference e.g. 'My X.AI connection'.
+4. Enter your API key. You can generate one in your X.AI account settings.
 Format: `xai-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`.
-5.Click Connect to complete the setup.
+5. Click Connect to complete the setup.
 
 ## Actions
 
-1.Create Completion
+1. Create Completion
 Input Parameters:
 - Model: Choose from models like Claude 3.5, Claude Instant, etc.
 - Prompt: Text input to guide the model.
@@ -33,7 +33,7 @@ Input Parameters:
 - Stop Sequences: Specify sequences to stop the completion.
 Use Case: Generate creative content, summarize text, or answer questions.
 
-2.Create Chat Completion
+2. Create Chat Completion
 Input Parameters:
 - **Model:** Choose the desired model.
 - **Messages:** Provide a list of conversation messages.
@@ -44,7 +44,7 @@ Input Parameters:
 - **User**
 Use Case: Chatbots, virtual assistants, or conversational AI.
 
-3.Create Embeddings
+3. Create Embeddings
 Input Parameters:
 - **Model:** Specify the embedding model.
 - **Input:** Text to be embedded.
