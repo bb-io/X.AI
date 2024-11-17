@@ -43,17 +43,17 @@ public class XaiActions : BaseInvocable
 
 
     [Action("Chat completion", Description = "Generate a chat completion based on a conversation")]
-    public async Task<ChatResponse> CreateChatCompletion([ActionParameter] ChatCompletionRequest input)
+    public async Task<ChatResponse> CreateChatCompletion([ActionParameter] string input, [ActionParameter] ChatCompletionRequest session)
     {
-        foreach (var message in input.Messages)
-        {
-            if (string.IsNullOrEmpty(message.Role))
-            {
-                message.Role = "user"; 
-            }
-        }
+        session.Messages ??= new List<Message>();
 
-        var messages = input.Messages.Select(message => new
+        session.Messages.Add(new Message
+        {
+            Role = "user",
+            Content = input
+        });
+
+        var messages = session.Messages.Select(message => new
         {
             role = message.Role,
             content = message.Content
@@ -61,20 +61,20 @@ public class XaiActions : BaseInvocable
 
         var jsonBody = new
         {
-            model = input.Model,
+            model = session.Model,
             messages = messages,
-            max_tokens = input.MaxTokens,
-            temperature = input.Temperature ?? 1.0,
-            top_p = input.TopP ?? 1.0,
-            presence_penalty = input.PresencePenalty ?? 0,
-            frequency_penalty = input.FrequencyPenalty ?? 0,
-            stop = input.Stop
+            max_tokens = session.MaxTokens ?? 150,
+            temperature = session.Temperature ?? 1.0,
+            top_p = session.TopP ?? 1.0,
+            presence_penalty = session.PresencePenalty ?? 0,
+            frequency_penalty = session.FrequencyPenalty ?? 0,
+            stop = session.Stop
         };
 
         var request = new RestRequest("/chat/completions", Method.Post);
         request.AddJsonBody(jsonBody);
 
-        var response = await _client.ExecuteWithErrorHandling<ChatCompletionResponse>(request);
+        var response = await _client.ExecuteWithErrorHandling<CompletionResponse>(request);
 
         if (response.Choices == null || !response.Choices.Any())
         {
@@ -83,14 +83,21 @@ public class XaiActions : BaseInvocable
 
         var firstChoice = response.Choices.First();
 
+        session.Messages.Add(new Message
+        {
+            Role = "assistant",
+            Content = firstChoice.Message?.Content ?? "No content generated"
+        });
+
         return new ChatResponse
         {
-            Message = firstChoice.Message.Content ?? "No content generated",
-            SystemPrompt = input.Messages.FirstOrDefault(m => m.Role == "system")?.Content ?? string.Empty,
-            UserPrompt = input.Messages.FirstOrDefault(m => m.Role == "user")?.Content ?? string.Empty,
+            Message = firstChoice.Message?.Content ?? "No content generated",
+            SystemPrompt = session.Messages.FirstOrDefault(m => m.Role == "system")?.Content ?? string.Empty,
+            UserPrompt = input,
             Usage = response.Usage
         };
     }
+
 
 
     [Action("Create embeddings", Description = "Create an embedding vector for the given input text")]

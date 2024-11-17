@@ -13,6 +13,9 @@ namespace Apps.X.AI.Models.Response
 
         [JsonProperty("model")]
         public string Model { get; set; }
+
+        [JsonProperty("usage")]
+        public Usage Usage { get; set; }
     }
 
     public class Choice
@@ -44,9 +47,19 @@ namespace Apps.X.AI.Models.Response
 
     public class ChatResponse
     {
-        public string Message { get; set; }
-        public string SystemPrompt { get; set; }
-        public string UserPrompt { get; set; }
+        [JsonProperty("message")]
+        public string Message { get; set; } 
+
+        [JsonProperty("system_prompt")]
+        public string SystemPrompt { get; set; } 
+
+        [JsonProperty("user_prompt")]
+        public string UserPrompt { get; set; } 
+
+        [JsonProperty("usage")]
         public Usage Usage { get; set; }
+
+        [JsonProperty("history")]
+        public List<Message> History { get; set; }
     }
 }
