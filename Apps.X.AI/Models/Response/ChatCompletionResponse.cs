@@ -15,8 +15,12 @@ namespace Apps.X.AI.Models.Response
         [JsonProperty("choices")]
         public List<Choice> Choices { get; set; }
 
-        [JsonProperty("id")]
-        public string Id { get; set; }
+        //[JsonProperty("id")]
+        //public string Id { get; set; }
+
+        [JsonProperty("usage")]
+        public Usage Usage { get; set; }
+
 
         [JsonProperty("model")]
         public string Model { get; set; }

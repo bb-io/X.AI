@@ -14,7 +14,7 @@ namespace Apps.X.AI.Models.Request
 
         [Display("Messages", Description = "A list of messages for the chat conversation.")]
         [JsonProperty("messages")]
-        public string Messages { get; set; }
+        public List<Message> Messages { get; set; }
 
         [Display("Max tokens", Description = "The maximum number of tokens to generate before stopping.")]
         [JsonProperty("max_tokens")]
@@ -32,8 +32,11 @@ namespace Apps.X.AI.Models.Request
         [JsonProperty("top_p")]
         public double? TopP { get; set; }
 
-        [JsonProperty("user")]
-        public string? User { get; set; }
+        [JsonProperty("presence_penalty")]
+        public double? PresencePenalty { get; set; }
+
+        [JsonProperty("frequency_penalty")]
+        public double? FrequencyPenalty { get; set; }
     }
 
     public class Message

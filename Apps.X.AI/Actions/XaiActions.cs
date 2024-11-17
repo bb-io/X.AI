@@ -42,24 +42,54 @@ public class XaiActions : BaseInvocable
     }
 
 
-    [Action("Create chat completion", Description = "Send a chat completion request")]
-    public async Task<ChatCompletionResponse> CreateChatCompletion([ActionParameter] ChatCompletionRequest input)
+    [Action("Chat completion", Description = "Generate a chat completion based on a conversation")]
+    public async Task<ChatResponse> CreateChatCompletion([ActionParameter] ChatCompletionRequest input)
     {
-        var request = new RestRequest("/chat/completions", Method.Post);
+        foreach (var message in input.Messages)
+        {
+            if (string.IsNullOrEmpty(message.Role))
+            {
+                message.Role = "user"; 
+            }
+        }
 
-        request.AddJsonBody(new
+        var messages = input.Messages.Select(message => new
+        {
+            role = message.Role,
+            content = message.Content
+        }).ToList();
+
+        var jsonBody = new
         {
             model = input.Model,
-            messages = input.Messages,
-            max_tokens = input.MaxTokens ?? 1024,
-            stop = input.Stop,
+            messages = messages,
+            max_tokens = input.MaxTokens,
             temperature = input.Temperature ?? 1.0,
             top_p = input.TopP ?? 1.0,
-            user = input.User
-        });
+            presence_penalty = input.PresencePenalty ?? 0,
+            frequency_penalty = input.FrequencyPenalty ?? 0,
+            stop = input.Stop
+        };
+
+        var request = new RestRequest("/chat/completions", Method.Post);
+        request.AddJsonBody(jsonBody);
 
         var response = await _client.ExecuteWithErrorHandling<ChatCompletionResponse>(request);
-        return response;
+
+        if (response.Choices == null || !response.Choices.Any())
+        {
+            throw new Exception("No choices were returned from the API.");
+        }
+
+        var firstChoice = response.Choices.First();
+
+        return new ChatResponse
+        {
+            Message = firstChoice.Message.Content ?? "No content generated",
+            SystemPrompt = input.Messages.FirstOrDefault(m => m.Role == "system")?.Content ?? string.Empty,
+            UserPrompt = input.Messages.FirstOrDefault(m => m.Role == "user")?.Content ?? string.Empty,
+            Usage = response.Usage
+        };
     }
 
 
