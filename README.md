@@ -6,13 +6,13 @@ Blackbird is the new automation backbone for the language technology industry. B
 <!-- begin docs -->
 The X.AI application allows users to integrate AI-driven completion and chat capabilities into their workflows. Whether you're automating repetitive tasks or generating insights, this app makes advanced AI tools accessible.
 
-##Before Setting Up
+## Before Setting Up
 
 Before you can connect and start using X.AI, ensure the following:
 1.You have an active [X.AI account](https://x.ai/) and API key. Visit X.AI API Documentation for more details.
 2.You are logged into your Blackbird.io environment.
 
-##Connecting
+## Connecting
 
 1.Navigate to apps and search for X.AI. If you cannot find X.AI then click Add App in the top right corner, select X.AI and add the app to your Blackbird environment.
 2.Click Add Connection to set up the integration.
@@ -21,7 +21,7 @@ Before you can connect and start using X.AI, ensure the following:
 Format: `xai-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`.
 5.Click Connect to complete the setup.
 
-##Actions
+## Actions
 
 1.Create Completion
 Input Parameters:
@@ -54,7 +54,7 @@ Use Case: Search engines, semantic analysis, or clustering.
 
 For more in-depth information about action consult the X.AI [API reference](https://docs.x.ai/api).
 
-##Feedback
+## Feedback
 Do you want to use this app or do you have feedback on our implementation? Reach out to us using the [established channels](https://www.blackbird.io/) or create an issue.
 
 <!-- end docs -->
