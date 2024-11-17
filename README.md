@@ -25,7 +25,7 @@ Format: `xai-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`.
 
 1. Create Completion
 Input Parameters:
-- Model: Choose from models like Claude 3.5, Claude Instant, etc.
+- Model: Choose the model.
 - Prompt: Text input to guide the model.
 - Max Tokens: Limit the length of the response.
 - Temperature: Adjust randomness in output (0 = deterministic, 1 = creative).
