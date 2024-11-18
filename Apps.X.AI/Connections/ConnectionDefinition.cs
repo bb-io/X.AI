@@ -11,7 +11,6 @@ public class ConnectionDefinition : IConnectionDefinition
         {
             Name = "API key",
             AuthenticationType = ConnectionAuthenticationType.Undefined,
-            ConnectionUsage = ConnectionUsage.Actions,
             ConnectionProperties = new List<ConnectionProperty>
             {
                 new("apiKey") { DisplayName = "API token", Sensitive = true }
@@ -22,6 +21,6 @@ public class ConnectionDefinition : IConnectionDefinition
     public IEnumerable<AuthenticationCredentialsProvider> CreateAuthorizationCredentialsProviders(
         Dictionary<string, string> values)
     {
-        return values.Select(x => new AuthenticationCredentialsProvider(AuthenticationCredentialsRequestLocation.None, x.Key, x.Value));
+        return values.Select(x => new AuthenticationCredentialsProvider(x.Key, x.Value));
     }
 }

@@ -37,12 +37,15 @@ namespace Apps.X.AI.Models.Response
     public class Usage
     {
         [JsonProperty("prompt_tokens")]
+        [Display("Prompt tokens")]
         public int PromptTokens { get; set; }
 
         [JsonProperty("completion_tokens")]
+        [Display("Completion tokens")]
         public int CompletionTokens { get; set; }
 
         [JsonProperty("total_tokens")]
+        [Display("Total tokens")]
         public int TotalTokens { get; set; }
     }
 
