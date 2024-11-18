@@ -25,33 +25,34 @@ Format: `xai-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`.
 
 1. Create Completion
 Input Parameters:
-- Model: Choose the model.
-- Prompt: Text input to guide the model.
-- Max Tokens: Limit the length of the response.
-- Temperature: Adjust randomness in output (0 = deterministic, 1 = creative).
-- Top P: Controls nucleus sampling (optional).
-- Stop Sequences: Specify sequences to stop the completion.
+- Model: Choose the model.(Required)
+- Prompt: Text input to guide the model.(Required)
+- Max Tokens: Limit the length of the response.(Optional)
+- Temperature: Adjust randomness in output (0 = deterministic, 1 = creative).(Optional)
+- Top P: Controls nucleus sampling. (Optional)
+- Stop Sequences: Specify sequences to stop the completion.(Optional)
   
 **Use Case:** Generate creative content, summarize text, or answer questions.
 
 2. Create Chat Completion
 Input Parameters:
-- **Model:** Choose the desired model.
-- **Messages:** Provide a list of conversation messages.
-- **Max Tokens:** Specify the response length.
-- **Temperature:** Adjust randomness in output (0 = deterministic, 1 = creative).
-- **Top P:** Controls nucleus sampling (optional).
-- **Stop Sequences:** Specify sequences to stop the completion.
-- **User**
+- **Model:** Choose the desired model.(Required)
+- **Input:** Provide a conversation messages.(Required)
+- **Max Tokens:** Specify the response length.(Optional)
+- **Temperature:** Adjust randomness in output (0 = deterministic, 1 = creative).(Optional)
+- **Top P:** Controls nucleus sampling.(Optional)
+- **Stop Sequences:** Specify sequences to stop the completion.(Optional)
+- **Presence Penalty:** Higher values encourage the model to explore new topics and reduce repetition.(Optional)
+- **Frequency Penalty:** Higher values discourage the model from repeating the same words or phrases multiple times in the same response.(Optional)
   
 **Use Case:** Chatbots, virtual assistants, or conversational AI.
 
-3. Create Embeddings
+3. Create Embeddings(In development on X.AI side)
 Input Parameters:
-- **Model:** Specify the embedding model.
-- **Input:** Text to be embedded.
-- **Dimensions:** Number of dimensions for the vector.
-- **Encoding Format:** Choose between float or base64.
+- **Model:** Specify the embedding model.(Required)
+- **Input:** Text to be embedded.(Required)
+- **Dimensions:** Number of dimensions for the vector.(Optional)
+- **Encoding Format:** Choose between float or base64.(Optional)
 
 **Use Case:** Search engines, semantic analysis, or clustering.
 
