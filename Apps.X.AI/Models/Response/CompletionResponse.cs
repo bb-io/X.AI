@@ -47,19 +47,13 @@ namespace Apps.X.AI.Models.Response
 
     public class ChatResponse
     {
-        [JsonProperty("message")]
-        public string Message { get; set; } 
+        [JsonProperty("model")]
+        public string Model { get; set; }
 
-        [JsonProperty("system_prompt")]
-        public string SystemPrompt { get; set; } 
-
-        [JsonProperty("user_prompt")]
-        public string UserPrompt { get; set; } 
+        [JsonProperty("choices")]
+        public List<Choice> Choices { get; set; } = new();
 
         [JsonProperty("usage")]
         public Usage Usage { get; set; }
-
-        [JsonProperty("history")]
-        public List<Message> History { get; set; }
     }
 }

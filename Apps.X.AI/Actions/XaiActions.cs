@@ -64,7 +64,7 @@ public class XaiActions : BaseInvocable
             model = session.Model,
             messages = messages,
             max_tokens = session.MaxTokens ?? 150,
-            temperature = session.Temperature ?? 1.0,
+            temperature = session.Temperature ?? 0.7,
             top_p = session.TopP ?? 1.0,
             presence_penalty = session.PresencePenalty ?? 0,
             frequency_penalty = session.FrequencyPenalty ?? 0,
@@ -91,9 +91,18 @@ public class XaiActions : BaseInvocable
 
         return new ChatResponse
         {
-            Message = firstChoice.Message?.Content ?? "No content generated",
-            SystemPrompt = session.Messages.FirstOrDefault(m => m.Role == "system")?.Content ?? string.Empty,
-            UserPrompt = input,
+            Model = session.Model,
+            Choices = response.Choices.Select(choice => new Choice
+            {
+                Index = choice.Index,
+                Message = new Message
+                {
+                    Role = "assistant",
+                    Content = choice.Message?.Content ?? "No content generated",
+                    Refusal = null
+                },
+                FinishReason = choice.FinishReason
+            }).ToList(),
             Usage = response.Usage
         };
     }
