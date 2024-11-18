@@ -27,12 +27,12 @@ namespace Apps.X.AI.Models.Request
 
         [Display("Temperature", Description = "Amount of randomness injected into the response.Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.")]
         [JsonProperty("temperature")]
-        [DataSource(typeof(TemperatureDataSourceHandler))]
+        [StaticDataSource(typeof(TemperatureDataSourceHandler))]
         public double? Temperature { get; set; }
 
         [Display("top_p", Description = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with `top_p` probability mass. \nSo 0.1 means only the tokens comprising the top 10% probability mass are considered. \nWe generally recommend altering this or temperature but not both.")]
         [JsonProperty("top_p")]
-        [DataSource(typeof(TopPDataSourceHandler))]
+        [StaticDataSource(typeof(TopPDataSourceHandler))]
         public double? TopP { get; set; }
     }
 }
