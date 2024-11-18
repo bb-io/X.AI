@@ -1,4 +1,5 @@
 ﻿using Blackbird.Applications.Sdk.Common.Dictionaries;
+using Blackbird.Applications.Sdk.Common.Dynamic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Apps.X.AI.DataSourceHandlers
 {
-    public class EncodingFormatDataSourceHandler : IStaticDataSourceHandler
-    {
-        public Dictionary<string, string> GetData()
+    public class EncodingFormatDataSourceHandler : IStaticDataSourceItemHandler
+    {       
+        IEnumerable<DataSourceItem> IStaticDataSourceItemHandler.GetData()
         {
-            return new Dictionary<string, string>
+            return new List<DataSourceItem>
             {
-                { "float", "Float" },
-                { "base64", "Base64" }
+                new DataSourceItem("float", "Float"),
+                new DataSourceItem("base64", "Base64")
             };
         }
     }

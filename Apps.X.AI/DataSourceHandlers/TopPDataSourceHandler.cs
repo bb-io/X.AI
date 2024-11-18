@@ -7,20 +7,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Blackbird.Applications.Sdk.Common.Dictionaries;
 
 namespace Apps.X.AI.DataSourceHandlers
 {
-    public class TopPDataSourceHandler : BaseInvocable, IDataSourceHandler
+    public class TopPDataSourceHandler : IStaticDataSourceItemHandler
     {
-        public TopPDataSourceHandler(InvocationContext invocationContext) : base(invocationContext)
+        public IEnumerable<DataSourceItem> GetData()
         {
-        }
-
-        public Dictionary<string, string> GetData(DataSourceContext context)
-        { 
-            return DataSourceHandlersExtensions.GenerateFormattedFloatArray(0.0f, 1.0f, 0.1f)
-                .Where(p => context.SearchString == null || p.Contains(context.SearchString))
-                .ToDictionary(p => p, p => p);
+            return new List<DataSourceItem>
+            {
+                new DataSourceItem("0.0", "0.0"),
+                new DataSourceItem("0.1", "0.1"),
+                new DataSourceItem("0.2", "0.2"),
+                new DataSourceItem("0.3", "0.3"),
+                new DataSourceItem("0.4", "0.4"),
+                new DataSourceItem("0.5", "0.5"),
+                new DataSourceItem("0.6", "0.6"),
+                new DataSourceItem("0.7", "0.7"),
+                new DataSourceItem("0.8", "0.8"),
+                new DataSourceItem("0.9", "0.9"),
+                new DataSourceItem("1.0", "1.0"),                
+            };
         }
     }
 }

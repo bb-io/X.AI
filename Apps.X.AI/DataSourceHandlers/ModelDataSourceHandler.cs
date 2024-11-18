@@ -1,4 +1,5 @@
 ﻿using Blackbird.Applications.Sdk.Common.Dictionaries;
+using Blackbird.Applications.Sdk.Common.Dynamic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace Apps.X.AI.DataSourceHandlers
 {
-    public class ModelDataSourceHandler : IStaticDataSourceHandler
-    {
-        public Dictionary<string, string> GetData()
-            => new()
+    public class ModelDataSourceHandler : IStaticDataSourceItemHandler
+    {      
+        IEnumerable<DataSourceItem> IStaticDataSourceItemHandler.GetData()
+        {
+            return new List<DataSourceItem>
             {
-                { "grok-beta", "Grok Beta" },               
+                new DataSourceItem("grok-beta", "Grok Beta")
             };
+        }
     }
 }

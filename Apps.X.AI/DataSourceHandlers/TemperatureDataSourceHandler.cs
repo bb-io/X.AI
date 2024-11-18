@@ -1,26 +1,39 @@
-﻿using Blackbird.Applications.Sdk.Common.Dynamic;
-using Blackbird.Applications.Sdk.Common.Invocation;
-using Blackbird.Applications.Sdk.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Apps.X.AI.Extentions;
+﻿using Blackbird.Applications.Sdk.Common.Dictionaries;
+using Blackbird.Applications.Sdk.Common.Dynamic;
 
 namespace Apps.X.AI.DataSourceHandlers
 {
-    public class TemperatureDataSourceHandler : BaseInvocable, IDataSourceHandler
+    public class TemperatureDataSourceHandler : IStaticDataSourceItemHandler
     {
-        public TemperatureDataSourceHandler(InvocationContext invocationContext) : base(invocationContext)
+        public IEnumerable<DataSourceItem> GetData()
         {
-        }
+            return new List<DataSourceItem>
+            {
+                new DataSourceItem("0.0", "0.0"),
+                new DataSourceItem("0.1", "0.1"),
+                new DataSourceItem("0.2", "0.2"),
+                new DataSourceItem("0.3", "0.3"),
+                new DataSourceItem("0.4", "0.4"),
+                new DataSourceItem("0.5", "0.5"),
+                new DataSourceItem("0.6", "0.6"),
+                new DataSourceItem("0.7", "0.7"),
+                new DataSourceItem("0.8", "0.8"),
+                new DataSourceItem("0.9", "0.9"),
+                new DataSourceItem("1.0", "1.0"),
+                new DataSourceItem("1.1", "1.1"),
+                new DataSourceItem("1.2", "1.2"),
+                new DataSourceItem("1.3", "1.3"),
+                new DataSourceItem("1.4", "1.4"),
+                new DataSourceItem("1.5", "1.5"),
+                new DataSourceItem("1.6", "1.6"),
+                new DataSourceItem("1.7", "1.7"),
+                new DataSourceItem("1.8", "1.8"),
+                new DataSourceItem("1.8", "1.8"),
+                new DataSourceItem("1.9", "1.9"),
+                new DataSourceItem("2.0", "2.0")
 
-        public Dictionary<string, string> GetData(DataSourceContext context)
-        {
-            return DataSourceHandlersExtensions.GenerateFormattedFloatArray(0.0f, 1.0f, 0.1f)
-                .Where(t => context.SearchString == null || t.Contains(context.SearchString))
-                .ToDictionary(t => t, t => t);
+            };
         }
-    }
+    };
 }
+
