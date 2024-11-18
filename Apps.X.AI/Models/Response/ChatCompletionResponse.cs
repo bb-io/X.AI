@@ -18,7 +18,6 @@ namespace Apps.X.AI.Models.Response
         [JsonProperty("usage")]
         public Usage Usage { get; set; }
 
-
         [JsonProperty("model")]
         public string Model { get; set; }
 

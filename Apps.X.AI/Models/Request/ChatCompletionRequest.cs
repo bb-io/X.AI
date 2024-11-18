@@ -35,9 +35,11 @@ namespace Apps.X.AI.Models.Request
         [DataSource(typeof(TopPDataSourceHandler))]
         public double? TopP { get; set; }
 
+        [Display("Presence penalty", Description = "Higher values encourage the model to explore new topics and reduce repetition.")]
         [JsonProperty("presence_penalty")]
         public double? PresencePenalty { get; set; }
 
+        [Display("Frequency Penalty", Description = "Higher values discourage the model from repeating the same words or phrases multiple times in the same response")]
         [JsonProperty("frequency_penalty")]
         public double? FrequencyPenalty { get; set; }
     }
