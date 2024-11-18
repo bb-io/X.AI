@@ -1,5 +1,6 @@
 ﻿using Apps.X.AI.Models.Response;
 using Blackbird.Applications.Sdk.Common.Authentication;
+using Blackbird.Applications.Sdk.Common.Exceptions;
 using Blackbird.Applications.Sdk.Utils.RestSharp;
 using Newtonsoft.Json;
 using RestSharp;
@@ -26,6 +27,26 @@ namespace Apps.X.AI.Api
             {
                 return new Exception($"Failed to parse response. Content: {response.Content}");
             }
+        }
+
+        public async Task<CompletionResponse> ExecuteCompletionRequest(RestRequest request)
+        {
+            CompletionResponse? response = null;
+            try
+            {
+                response = await ExecuteWithErrorHandling<CompletionResponse>(request);
+            }
+            catch (Exception)
+            {
+                throw new PluginApplicationException("The xAI API is not responding as expected.");
+            }
+
+            if (response?.Choices.FirstOrDefault()?.Message?.Content == null)
+            {
+                throw new PluginApplicationException("The xAI API is not responding as expected.");
+            }
+
+            return response;
         }
     }
 }

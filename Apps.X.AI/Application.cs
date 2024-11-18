@@ -1,12 +1,13 @@
 ﻿using Blackbird.Applications.Sdk.Common;
+using Blackbird.Applications.Sdk.Common.Metadata;
 
 namespace Apps.X.AI;
 
-public class Application : IApplication
+public class Application : IApplication, ICategoryProvider
 {
-    public string Name
+    public IEnumerable<ApplicationCategory> Categories
     {
-        get => "X.AI";
+        get => [ApplicationCategory.ArtificialIntelligence];
         set { }
     }
 
