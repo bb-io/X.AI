@@ -28,7 +28,6 @@ namespace Apps.X.AI.DataSourceHandlers
                 new DataSourceItem("1.6", "1.6"),
                 new DataSourceItem("1.7", "1.7"),
                 new DataSourceItem("1.8", "1.8"),
-                new DataSourceItem("1.8", "1.8"),
                 new DataSourceItem("1.9", "1.9"),
                 new DataSourceItem("2.0", "2.0")
 
