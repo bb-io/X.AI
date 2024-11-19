@@ -1,4 +1,4 @@
-﻿using Apps.X.AI.DataSourceHandlers;
+﻿using Apps.XAI.DataSourceHandlers;
 using Blackbird.Applications.Sdk.Common;
 using Blackbird.Applications.Sdk.Common.Dictionaries;
 using Newtonsoft.Json;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Apps.X.AI.Models.Request
+namespace Apps.XAI.Models.Request
 {
     public class CreateEmbeddingRequest
     {

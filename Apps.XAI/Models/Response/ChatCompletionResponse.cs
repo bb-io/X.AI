@@ -1,4 +1,4 @@
-﻿using Apps.X.AI.Models.Request;
+﻿using Apps.XAI.Models.Request;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Apps.X.AI.Models.Response
+namespace Apps.XAI.Models.Response
 {
     public class ChatCompletionResponse
     {

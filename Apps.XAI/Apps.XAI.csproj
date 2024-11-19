@@ -9,7 +9,7 @@
         <Version>1.0.4</Version>
         <AssemblyName>Apps.XAI</AssemblyName>
 		<PackageId>Apps.XAI</PackageId>
-		<RootNamespace>Apps.X.AI</RootNamespace>
+		<RootNamespace>Apps.XAI</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

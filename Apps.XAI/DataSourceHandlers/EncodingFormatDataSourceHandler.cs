@@ -6,15 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Apps.X.AI.DataSourceHandlers
+namespace Apps.XAI.DataSourceHandlers
 {
-    public class ModelDataSourceHandler : IStaticDataSourceItemHandler
-    {      
+    public class EncodingFormatDataSourceHandler : IStaticDataSourceItemHandler
+    {       
         IEnumerable<DataSourceItem> IStaticDataSourceItemHandler.GetData()
         {
             return new List<DataSourceItem>
             {
-                new DataSourceItem("grok-beta", "Grok Beta")
+                new DataSourceItem("float", "Float"),
+                new DataSourceItem("base64", "Base64")
             };
         }
     }

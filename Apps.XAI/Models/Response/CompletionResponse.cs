@@ -1,8 +1,8 @@
-﻿using Apps.X.AI.Models.Request;
+﻿using Apps.XAI.Models.Request;
 using Blackbird.Applications.Sdk.Common;
 using Newtonsoft.Json;
 
-namespace Apps.X.AI.Models.Response
+namespace Apps.XAI.Models.Response
 {
     public class CompletionResponse
     {

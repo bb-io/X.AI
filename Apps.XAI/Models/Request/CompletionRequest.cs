@@ -1,21 +1,21 @@
-﻿using Apps.X.AI.DataSourceHandlers;
+﻿using Apps.XAI.DataSourceHandlers;
 using Blackbird.Applications.Sdk.Common;
 using Blackbird.Applications.Sdk.Common.Dictionaries;
-using Newtonsoft.Json;
 using Blackbird.Applications.Sdk.Common.Dynamic;
+using Newtonsoft.Json;
 
-namespace Apps.X.AI.Models.Request
+namespace Apps.XAI.Models.Request
 {
-    public class ChatCompletionRequest
+    public class CompletionRequest
     {
-        [Display("Model", Description = "Model name for the chat completion request.")]
-        [JsonProperty("model")]
+        [Display("Model", Description = "This parameter controls which version of X.AI answers your request")]
         [StaticDataSource(typeof(ModelDataSourceHandler))]
+        [JsonProperty("model")]
         public string Model { get; set; }
 
-        [Display("Messages", Description = "A list of messages for the chat conversation.")]
-        [JsonProperty("messages")]
-        public List<string>? Messages { get; set; } = new();
+        [Display("Prompt", Description = "The prompt that you want X.AI to complete.")]
+        [JsonProperty("prompt")]
+        public string Prompt { get; set; }
 
         [Display("Max tokens", Description = "The maximum number of tokens to generate before stopping.")]
         [JsonProperty("max_tokens")]
@@ -34,26 +34,5 @@ namespace Apps.X.AI.Models.Request
         [JsonProperty("top_p")]
         [StaticDataSource(typeof(TopPDataSourceHandler))]
         public double? TopP { get; set; }
-
-        [Display("Presence penalty", Description = "Higher values encourage the model to explore new topics and reduce repetition.")]
-        [JsonProperty("presence_penalty")]
-        public double? PresencePenalty { get; set; }
-
-        [Display("Frequency Penalty", Description = "Higher values discourage the model from repeating the same words or phrases multiple times in the same response")]
-        [JsonProperty("frequency_penalty")]
-        public double? FrequencyPenalty { get; set; }
-    }
-
-    public class Message
-    {
-        [JsonProperty("role")]
-        public string Role { get; set; }
-
-        [JsonProperty("content")]
-        public string Content { get; set; }
-
-        [JsonProperty("refusal")]
-        public string? Refusal { get; set; }
     }
 }
-

@@ -1,7 +1,7 @@
 ﻿using Blackbird.Applications.Sdk.Common;
 using Blackbird.Applications.Sdk.Common.Metadata;
 
-namespace Apps.X.AI;
+namespace Apps.XAI;
 
 public class Application : IApplication, ICategoryProvider
 {

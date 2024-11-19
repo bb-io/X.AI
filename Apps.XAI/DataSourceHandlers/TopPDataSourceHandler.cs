@@ -1,4 +1,4 @@
-﻿using Apps.X.AI.Extentions;
+﻿using Apps.XAI.Extentions;
 using Blackbird.Applications.Sdk.Common.Dynamic;
 using Blackbird.Applications.Sdk.Common.Invocation;
 using Blackbird.Applications.Sdk.Common;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Blackbird.Applications.Sdk.Common.Dictionaries;
 
-namespace Apps.X.AI.DataSourceHandlers
+namespace Apps.XAI.DataSourceHandlers
 {
     public class TopPDataSourceHandler : IStaticDataSourceItemHandler
     {
