@@ -15,7 +15,7 @@ namespace Apps.X.AI.Models.Request
 
         [Display("Messages", Description = "A list of messages for the chat conversation.")]
         [JsonProperty("messages")]
-        public List<string> Messages { get; set; } = new();
+        public List<string>? Messages { get; set; } = new();
 
         [Display("Max tokens", Description = "The maximum number of tokens to generate before stopping.")]
         [JsonProperty("max_tokens")]
