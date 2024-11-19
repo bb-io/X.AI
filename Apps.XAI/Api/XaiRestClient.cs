@@ -10,7 +10,7 @@ namespace Apps.XAI.Api
     public class XaiRestClient : BlackBirdRestClient
     {
         public XaiRestClient(IEnumerable<AuthenticationCredentialsProvider> authProviders)
-            : base(new RestClientOptions { ThrowOnAnyError = false, BaseUrl = new Uri("https://api.XAI/v1") })
+            : base(new RestClientOptions { ThrowOnAnyError = false, BaseUrl = new Uri("https://api.X.AI/v1") })
         {
             this.AddDefaultHeader("Authorization", $"Bearer {authProviders.First(x => x.KeyName == "apiKey").Value}");
         }
@@ -36,9 +36,9 @@ namespace Apps.XAI.Api
             {
                 response = await ExecuteWithErrorHandling<CompletionResponse>(request);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw new PluginApplicationException("The xAI API is not responding as expected.");
+                throw new PluginApplicationException(e.Message);
             }
 
             if (response?.Choices == null || !response.Choices.Any())
