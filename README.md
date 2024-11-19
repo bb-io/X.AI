@@ -25,36 +25,27 @@ Format: `xai-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`.
 
 **1. Create Completion**
 Input Parameters:
-- Model: Choose the model.(Required)
-- Prompt: Text input to guide the model.(Required)
-- Max Tokens: Limit the length of the response.(Optional)
-- Temperature: Adjust randomness in output (0 = deterministic, 1 = creative).(Optional)
+- Model: Choose the model.
+- Prompt: Text input to guide the model.
+- Max Tokens: Limit the length of the response. (Optional)
+- Temperature: Adjust randomness in output (0 = deterministic, 1 = creative). (Optional)
 - Top P: Controls nucleus sampling. (Optional)
-- Stop Sequences: Specify sequences to stop the completion.(Optional)
+- Stop Sequences: Specify sequences to stop the completion. (Optional)
   
 **Use Case:** Generate creative content, summarize text, or answer questions.
 
 **2. Create Chat Completion**
 Input Parameters:
-- Model: Choose the desired model.(Required)
-- Input: Provide a conversation messages.(Required)
-- Max Tokens: Specify the response length.(Optional)
-- Temperature: Adjust randomness in output (0 = deterministic, 1 = creative).(Optional)
-- Top P: Controls nucleus sampling.(Optional)
-- Stop Sequences: Specify sequences to stop the completion.(Optional)
-- Presence Penalty: Higher values encourage the model to explore new topics and reduce repetition.(Optional)
-- Frequency Penalty: Higher values discourage the model from repeating the same words or phrases multiple times in the same response.(Optional)
+- Model: Choose the desired model.
+- Input: Provide a conversation messages.
+- Max Tokens: Specify the response length. (Optional)
+- Temperature: Adjust randomness in output (0 = deterministic, 1 = creative). (Optional)
+- Top P: Controls nucleus sampling. (Optional)
+- Stop Sequences: Specify sequences to stop the completion. (Optional)
+- Presence Penalty: Higher values encourage the model to explore new topics and reduce repetition. (Optional)
+- Frequency Penalty: Higher values discourage the model from repeating the same words or phrases multiple times in the same response. (Optional)
   
 **Use Case:** Chatbots, virtual assistants, or conversational AI.
-
-<!-- 3. Create Embeddings(In development on xAI side)
-Input Parameters:
-- **Model:** Specify the embedding model.(Required)
-- **Input:** Text to be embedded.(Required)
-- **Dimensions:** Number of dimensions for the vector.(Optional)
-- **Encoding Format:** Choose between float or base64.(Optional)
-
-**Use Case:** Search engines, semantic analysis, or clustering. -->
 
 For more in-depth information about action consult the xAI [API reference](https://docs.x.ai/api).
 
