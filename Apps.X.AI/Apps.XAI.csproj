@@ -6,14 +6,18 @@
         <Nullable>enable</Nullable>
         <Product>xAI [Beta]</Product>
         <Description>xAI allows users to integrate AI-driven completion and chat capabilities into their workflows. Whether you're automating repetitive tasks or generating insights, this app makes advanced AI tools accessible.</Description>
-        <Version>1.0.2</Version>
+        <Version>1.0.3</Version>
         <AssemblyName>Apps.XAI</AssemblyName>
 		<PackageId>Apps.XAI</PackageId>
 		<RootNamespace>Apps.X.AI</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="image\icon.jpg">
+      <None Remove="image\icon.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="image\icon.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </EmbeddedResource>
     </ItemGroup>
