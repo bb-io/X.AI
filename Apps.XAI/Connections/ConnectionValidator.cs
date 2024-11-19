@@ -1,9 +1,9 @@
-﻿using Apps.X.AI.Api;
+﻿using Apps.XAI.Api;
 using Blackbird.Applications.Sdk.Common.Authentication;
 using Blackbird.Applications.Sdk.Common.Connections;
 using RestSharp;
 
-namespace Apps.X.AI.Connections;
+namespace Apps.XAI.Connections;
 
 public class ConnectionValidator : IConnectionValidator
 {

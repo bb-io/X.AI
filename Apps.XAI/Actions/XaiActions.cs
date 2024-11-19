@@ -1,13 +1,13 @@
-﻿using Apps.X.AI.Api;
-using Apps.X.AI.Models.Request;
-using Apps.X.AI.Models.Response;
+﻿using Apps.XAI.Api;
+using Apps.XAI.Models.Request;
+using Apps.XAI.Models.Response;
 using Blackbird.Applications.Sdk.Common;
 using Blackbird.Applications.Sdk.Common.Actions;
 using Blackbird.Applications.Sdk.Common.Exceptions;
 using Blackbird.Applications.Sdk.Common.Invocation;
 using RestSharp;
 
-namespace Apps.X.AI.Actions;
+namespace Apps.XAI.Actions;
 
 [ActionList]
 public class XaiActions : BaseInvocable

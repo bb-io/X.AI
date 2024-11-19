@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Apps.X.AI.Models.Response
+namespace Apps.XAI.Models.Response
 {
     public class ErrorResponse
     {

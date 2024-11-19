@@ -1,7 +1,7 @@
 ﻿using Blackbird.Applications.Sdk.Common.Authentication;
 using Blackbird.Applications.Sdk.Common.Connections;
 
-namespace Apps.X.AI.Connections;
+namespace Apps.XAI.Connections;
 
 public class ConnectionDefinition : IConnectionDefinition
 {

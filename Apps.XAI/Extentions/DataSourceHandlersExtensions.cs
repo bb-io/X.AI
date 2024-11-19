@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Apps.X.AI.Extentions
+namespace Apps.XAI.Extentions
 {
     public static class DataSourceHandlersExtensions
     {
