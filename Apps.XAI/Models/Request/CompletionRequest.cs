@@ -10,7 +10,7 @@ namespace Apps.XAI.Models.Request
     public class CompletionRequest
     {
         [Display("Model", Description = "This parameter controls which version of X.AI answers your request")]
-        [StaticDataSource(typeof(ModelDataSourceHandler))]
+        [DataSource(typeof(ModelDataSourceHandler))]
         [JsonProperty("model")]
         public string Model { get; set; }
 

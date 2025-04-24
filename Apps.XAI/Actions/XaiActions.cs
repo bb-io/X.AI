@@ -1,13 +1,9 @@
-﻿using Apps.XAI.Api;
-using Apps.XAI.Models.Request;
+﻿using Apps.XAI.Models.Request;
 using Apps.XAI.Models.Response;
 using Blackbird.Applications.Sdk.Common;
 using Blackbird.Applications.Sdk.Common.Actions;
-using Blackbird.Applications.Sdk.Common.Exceptions;
-using Blackbird.Applications.Sdk.Common.Files;
 using Blackbird.Applications.Sdk.Common.Invocation;
 using Blackbird.Applications.SDK.Extensions.FileManagement.Interfaces;
-using Newtonsoft.Json;
 using RestSharp;
 
 namespace Apps.XAI.Actions;
@@ -22,7 +18,7 @@ public class XaiActions : BaseActions
 
     [Action("Chat completion", Description = "Generate a chat completion based on a conversation")]
     public async Task<ChatResponse> CreateChatCompletion(
-        [ActionParameter][Display("Message", Description = "The message to begin the conversation with")] string input, 
+        [ActionParameter][Display("Message", Description = "The message to begin the conversation with")] string input,
         [ActionParameter] ChatCompletionRequest session)
     {
         if (session.Messages == null)

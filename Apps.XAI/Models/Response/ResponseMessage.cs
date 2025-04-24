@@ -1,9 +1,4 @@
 ﻿using Blackbird.Applications.Sdk.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Apps.XAI.Models.Response
 {
@@ -13,6 +8,6 @@ namespace Apps.XAI.Models.Response
         public string Text { get; set; }
 
         [Display("Usage", Description = "Description of the usage")]
-        public Usage Usage {  get; set; }
+        public Usage Usage { get; set; }
     }
 }

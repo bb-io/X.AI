@@ -1,12 +1,10 @@
-﻿using Apps.XAI.Api;
-using Apps.XAI.Models.Request;
+﻿using Apps.XAI.Models.Request;
 using Apps.XAI.Models.Response;
 using Blackbird.Applications.Sdk.Common;
 using Blackbird.Applications.Sdk.Common.Actions;
 using Blackbird.Applications.Sdk.Common.Invocation;
 using Blackbird.Applications.SDK.Extensions.FileManagement.Interfaces;
 using RestSharp;
-using System.Xml.Serialization;
 
 namespace Apps.XAI.Actions
 {
