@@ -1,15 +1,7 @@
-﻿using Apps.XAI.Extentions;
+﻿using Blackbird.Applications.Sdk.Common.Dictionaries;
 using Blackbird.Applications.Sdk.Common.Dynamic;
-using Blackbird.Applications.Sdk.Common.Invocation;
-using Blackbird.Applications.Sdk.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Blackbird.Applications.Sdk.Common.Dictionaries;
 
-namespace Apps.XAI.DataSourceHandlers
+namespace Apps.XAI.DataSourceHandlers.StaticHandler
 {
     public class TopPDataSourceHandler : IStaticDataSourceItemHandler
     {
@@ -27,7 +19,7 @@ namespace Apps.XAI.DataSourceHandlers
                 new DataSourceItem("0.7", "0.7"),
                 new DataSourceItem("0.8", "0.8"),
                 new DataSourceItem("0.9", "0.9"),
-                new DataSourceItem("1.0", "1.0"),                
+                new DataSourceItem("1.0", "1.0"),
             };
         }
     }

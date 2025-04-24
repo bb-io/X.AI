@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Apps.XAI.Models.Response
 {
@@ -18,6 +13,6 @@ namespace Apps.XAI.Models.Response
         [JsonProperty("object")]
         public string Object { get; set; }
 
-      
+
     }
 }

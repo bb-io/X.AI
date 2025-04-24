@@ -1,8 +1,9 @@
 ﻿using Apps.XAI.DataSourceHandlers;
+using Apps.XAI.DataSourceHandlers.StaticHandler;
 using Blackbird.Applications.Sdk.Common;
 using Blackbird.Applications.Sdk.Common.Dictionaries;
-using Newtonsoft.Json;
 using Blackbird.Applications.Sdk.Common.Dynamic;
+using Newtonsoft.Json;
 
 namespace Apps.XAI.Models.Request
 {
@@ -10,7 +11,7 @@ namespace Apps.XAI.Models.Request
     {
         [Display("Model", Description = "Model name for the chat completion request.")]
         [JsonProperty("model")]
-        [StaticDataSource(typeof(ModelDataSourceHandler))]
+        [DataSource(typeof(ModelDataSourceHandler))]
         public string Model { get; set; }
 
         [Display("Messages", Description = "A list of messages for the chat conversation.")]

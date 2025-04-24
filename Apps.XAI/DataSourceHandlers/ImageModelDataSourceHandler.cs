@@ -7,11 +7,11 @@ using RestSharp;
 
 namespace Apps.XAI.DataSourceHandlers
 {
-    public class ModelDataSourceHandler : BaseInvocable, IAsyncDataSourceHandler
+    public class ImageModelDataSourceHandler : BaseInvocable, IAsyncDataSourceHandler
     {
         private readonly XaiRestClient Client;
 
-        public ModelDataSourceHandler(InvocationContext invocationContext)
+        public ImageModelDataSourceHandler(InvocationContext invocationContext)
             : base(invocationContext)
         {
             Client = new XaiRestClient(invocationContext.AuthenticationCredentialsProviders);
@@ -19,9 +19,9 @@ namespace Apps.XAI.DataSourceHandlers
         public async Task<Dictionary<string, string>> GetDataAsync(DataSourceContext context,
              CancellationToken cancellationToken)
         {
-            var request = new RestRequest("/models", Method.Get);
-            var response = await Client.ExecuteWithErrorHandling<ModelsListResponse>(request);
-            return response.Data.ToDictionary(m => m.Id, m => m.Id);
+            var request = new RestRequest("/image-generation-models", Method.Get);
+            var response = await Client.ExecuteWithErrorHandling<ImageModelsResponse>(request);
+            return response.Models.ToDictionary(m => m.Id, m => m.Id);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Apps.XAI.DataSourceHandlers;
+using Apps.XAI.DataSourceHandlers.StaticHandler;
 using Blackbird.Applications.Sdk.Common;
 using Blackbird.Applications.Sdk.Common.Dictionaries;
 using Blackbird.Applications.Sdk.Common.Dynamic;
@@ -9,7 +10,7 @@ namespace Apps.XAI.Models.Request
     public class CompletionRequest
     {
         [Display("Model", Description = "This parameter controls which version of X.AI answers your request")]
-        [StaticDataSource(typeof(ModelDataSourceHandler))]
+        [DataSource(typeof(ModelDataSourceHandler))]
         [JsonProperty("model")]
         public string Model { get; set; }
 
