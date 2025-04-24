@@ -4,53 +4,26 @@ using Apps.XAI.Models.Response;
 using Blackbird.Applications.Sdk.Common;
 using Blackbird.Applications.Sdk.Common.Actions;
 using Blackbird.Applications.Sdk.Common.Exceptions;
+using Blackbird.Applications.Sdk.Common.Files;
 using Blackbird.Applications.Sdk.Common.Invocation;
+using Blackbird.Applications.SDK.Extensions.FileManagement.Interfaces;
+using Newtonsoft.Json;
 using RestSharp;
 
 namespace Apps.XAI.Actions;
 
 [ActionList]
-public class XaiActions : BaseInvocable
+public class XaiActions : BaseActions
 {
-    private readonly XaiRestClient _client;
-    public XaiActions(InvocationContext invocationContext) : base(invocationContext)
+    public XaiActions(InvocationContext invocationContext, IFileManagementClient fileManagementClient) : base(invocationContext, fileManagementClient)
     {
-        _client = new XaiRestClient(invocationContext.AuthenticationCredentialsProviders);
-    }
-
-
-    [Action("Create completion", Description = "Generate a completion based on a prompt")]
-    public async Task<ResponseMessage> CreateCompletion([ActionParameter] CompletionRequest input)
-    {
-        var request = new RestRequest("/completions", Method.Post);
-
-        request.AddJsonBody(new
-        {
-            model = input.Model,
-            prompt = input.Prompt,
-            max_tokens = input.MaxTokens ?? 4096,
-            stop = input.Stop,
-            temperature = input.Temperature ?? 1.0,
-            top_p = input.TopP ?? 1.0
-        });
-
-        var response = await _client.ExecuteCompletionRequest(request);
-
-        return new ResponseMessage
-        {
-            Text = response.Choices.FirstOrDefault()?.Text ?? string.Empty,
-            Usage = response.Usage ?? new Usage
-            {
-                PromptTokens = 0,
-                CompletionTokens = 0,
-                TotalTokens = 0
-            }
-        };
     }
 
 
     [Action("Chat completion", Description = "Generate a chat completion based on a conversation")]
-    public async Task<ChatResponse> CreateChatCompletion([ActionParameter][Display("Message", Description = "The message to begin the conversation with")] string input, [ActionParameter] ChatCompletionRequest session)
+    public async Task<ChatResponse> CreateChatCompletion(
+        [ActionParameter][Display("Message", Description = "The message to begin the conversation with")] string input, 
+        [ActionParameter] ChatCompletionRequest session)
     {
         if (session.Messages == null)
         {
@@ -73,7 +46,7 @@ public class XaiActions : BaseInvocable
         var request = new RestRequest("/chat/completions", Method.Post);
         request.AddJsonBody(jsonBody);
 
-        var response = await _client.ExecuteCompletionRequest(request);
+        var response = await Client.ExecuteCompletionRequest(request);
 
         return new ChatResponse
         {
@@ -87,5 +60,4 @@ public class XaiActions : BaseInvocable
             }
         };
     }
-
 }

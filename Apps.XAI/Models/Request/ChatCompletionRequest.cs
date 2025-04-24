@@ -3,6 +3,7 @@ using Blackbird.Applications.Sdk.Common;
 using Blackbird.Applications.Sdk.Common.Dictionaries;
 using Newtonsoft.Json;
 using Blackbird.Applications.Sdk.Common.Dynamic;
+using Apps.XAI.DataSourceHandlers.StaticHandler;
 
 namespace Apps.XAI.Models.Request
 {

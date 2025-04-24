@@ -1,7 +1,7 @@
 ﻿using Blackbird.Applications.Sdk.Common.Dictionaries;
 using Blackbird.Applications.Sdk.Common.Dynamic;
 
-namespace Apps.XAI.DataSourceHandlers
+namespace Apps.XAI.DataSourceHandlers.StaticHandler
 {
     public class TemperatureDataSourceHandler : IStaticDataSourceItemHandler
     {

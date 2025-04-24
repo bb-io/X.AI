@@ -1,4 +1,5 @@
 ﻿using Apps.XAI.DataSourceHandlers;
+using Apps.XAI.DataSourceHandlers.StaticHandler;
 using Blackbird.Applications.Sdk.Common;
 using Blackbird.Applications.Sdk.Common.Dictionaries;
 using Blackbird.Applications.Sdk.Common.Dynamic;
