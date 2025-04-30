@@ -3,6 +3,7 @@ using Apps.XAI.DataSourceHandlers.StaticHandler;
 using Blackbird.Applications.Sdk.Common;
 using Blackbird.Applications.Sdk.Common.Dictionaries;
 using Blackbird.Applications.Sdk.Common.Dynamic;
+using Blackbird.Applications.Sdk.Common.Files;
 using Newtonsoft.Json;
 
 namespace Apps.XAI.Models.Request
@@ -14,9 +15,21 @@ namespace Apps.XAI.Models.Request
         [DataSource(typeof(ModelDataSourceHandler))]
         public string Model { get; set; }
 
-        [Display("Messages", Description = "A list of messages for the chat conversation.")]
+        [Display("System prompt", Description = "Optional system prompt to set the context for the conversation.")]
+        [JsonProperty("system_prompt")]
+        public string? SystemPrompt { get; set; }
+
+        [Display("Messages", Description = "A list of previous messages for the chat conversation.")]
         [JsonProperty("messages")]
         public List<string>? Messages { get; set; } = new();
+
+        [Display("Parameters", Description = "Additional texts to include in the user prompt.")]
+        [JsonProperty("parameters")]
+        public IEnumerable<string>? Parameters { get; set; }
+
+        [Display("File", Description = "Optional file (image or audio) to include in the request.")]
+        [JsonProperty("file")]
+        public FileReference? File { get; set; }
 
         [Display("Max tokens", Description = "The maximum number of tokens to generate before stopping.")]
         [JsonProperty("max_tokens")]
@@ -26,12 +39,12 @@ namespace Apps.XAI.Models.Request
         [JsonProperty("stop")]
         public List<string>? Stop { get; set; }
 
-        [Display("Temperature", Description = "Amount of randomness injected into the response.Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.")]
+        [Display("Temperature", Description = "Amount of randomness injected into the response. Higher values like 0.8 make the output more random, while lower values like 0.2 make it more focused and deterministic.")]
         [JsonProperty("temperature")]
         [StaticDataSource(typeof(TemperatureDataSourceHandler))]
         public double? Temperature { get; set; }
 
-        [Display("top_p", Description = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with `top_p` probability mass. \nSo 0.1 means only the tokens comprising the top 10% probability mass are considered. \nWe generally recommend altering this or temperature but not both.")]
+        [Display("Top P", Description = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with `top_p` probability mass. 0.1 means only the tokens comprising the top 10% probability mass are considered.")]
         [JsonProperty("top_p")]
         [StaticDataSource(typeof(TopPDataSourceHandler))]
         public double? TopP { get; set; }
@@ -40,7 +53,7 @@ namespace Apps.XAI.Models.Request
         [JsonProperty("presence_penalty")]
         public double? PresencePenalty { get; set; }
 
-        [Display("Frequency Penalty", Description = "Higher values discourage the model from repeating the same words or phrases multiple times in the same response")]
+        [Display("Frequency penalty", Description = "Higher values discourage the model from repeating the same words or phrases multiple times in the same response.")]
         [JsonProperty("frequency_penalty")]
         public double? FrequencyPenalty { get; set; }
     }

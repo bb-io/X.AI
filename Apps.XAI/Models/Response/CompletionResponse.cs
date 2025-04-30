@@ -62,5 +62,8 @@ namespace Apps.XAI.Models.Response
         [Display("Usage", Description = "Description of the usage")]
         [JsonProperty("usage")]
         public Usage Usage { get; set; }
+
+        [Display("System prompt")]
+        public string? SystemPrompt { get; set; }
     }
 }
