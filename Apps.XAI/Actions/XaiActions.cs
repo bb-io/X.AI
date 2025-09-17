@@ -7,6 +7,7 @@ using Blackbird.Applications.SDK.Extensions.FileManagement.Interfaces;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
 using RestSharp;
+using Apps.XAI.Utils;
 
 namespace Apps.XAI.Actions;
 
@@ -85,11 +86,11 @@ public class XaiActions : BaseActions
         {
             model = session.Model,
             messages,
-            max_tokens = session.MaxTokens,
+            max_tokens = session.MaxTokens ?? ModelTokenService.GetMaxTokensForModel(session.Model),
             temperature = session.Temperature ?? 1.0,
             top_p = session.TopP ?? 1.0,
-            presence_penalty = session.PresencePenalty ?? 0.0,
-            frequency_penalty = session.FrequencyPenalty ?? 0.0,
+            presence_penalty = session.PresencePenalty,
+            frequency_penalty = session.FrequencyPenalty,
             stop = session.Stop
         };
 
