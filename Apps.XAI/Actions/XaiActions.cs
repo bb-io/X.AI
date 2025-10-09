@@ -11,14 +11,11 @@ using Apps.XAI.Utils;
 
 namespace Apps.XAI.Actions;
 
-[ActionList]
-public class XaiActions : BaseActions
+[ActionList("Chat completions")]
+public class XaiActions(InvocationContext invocationContext, IFileManagementClient fileManagementClient)
+    : BaseActions(invocationContext, fileManagementClient)
 {
     private const int MaxCompletionRetries = 3;
-
-    public XaiActions(InvocationContext invocationContext, IFileManagementClient fileManagementClient) : base(invocationContext, fileManagementClient)
-    {
-    }
 
 
     [Action("Chat completion", Description = "Generate a chat completion based on a conversation")]
