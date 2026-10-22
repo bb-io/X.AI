@@ -83,7 +83,7 @@ public class XaiActions(InvocationContext invocationContext, IFileManagementClie
         {
             model = session.Model,
             messages,
-            max_tokens = session.MaxTokens ?? ModelTokenService.GetMaxTokensForModel(session.Model),
+            max_tokens = session.MaxTokens ?? ModelTokenService.For(session.Model).MaxOutputTokens,
             temperature = session.Temperature ?? 1.0,
             top_p = session.TopP ?? 1.0,
             presence_penalty = session.PresencePenalty,

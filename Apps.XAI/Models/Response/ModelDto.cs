@@ -1,24 +1,28 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace Apps.XAI.Models.Response
 {
     public class ModelDto
     {
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; } = string.Empty;
 
-        [JsonPropertyName("created")]
-        public long Created { get; set; }
+        [JsonProperty("aliases")]
+        public List<string> Aliases { get; set; } = [];
 
-        [JsonPropertyName("object")]
-        public string Object { get; set; }
-
-        [JsonPropertyName("owned_by")]
-        public string OwnedBy { get; set; }
+        [JsonProperty("capabilities")]
+        public ModelCapabilitiesDto? Capabilities { get; set; }
     }
-    public class ModelsListResponse
+
+    public class ModelCapabilitiesDto
     {
-        [JsonPropertyName("data")]
-        public List<ModelDto> Data { get; set; }
+        [JsonProperty("reasoning_effort")]
+        public List<string> ReasoningEffort { get; set; } = [];
+    }
+
+    public class ModelsResponse
+    {
+        [JsonProperty("models")]
+        public List<ModelDto> Models { get; set; } = [];
     }
 }

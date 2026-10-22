@@ -20,7 +20,7 @@ namespace Apps.XAI.DataSourceHandlers
              CancellationToken cancellationToken)
         {
             var request = new RestRequest("/image-generation-models", Method.Get);
-            var response = await Client.ExecuteWithErrorHandling<ImageModelsResponse>(request);
+            var response = await Client.ExecuteWithErrorHandling<ModelsResponse>(request);
             return response.Models.ToDictionary(m => m.Id, m => m.Id);
         }
     }

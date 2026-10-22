@@ -11,12 +11,10 @@ public class ConnectionValidator : IConnectionValidator
         IEnumerable<AuthenticationCredentialsProvider> authenticationCredentialsProviders,
         CancellationToken cancellationToken)
     {
-        var client = new XaiRestClient(authenticationCredentialsProviders);
-        var request = new RestRequest("/api-key", Method.Get);
-
         try
         {
-            await client.ExecuteWithErrorHandling(request);
+            var client = new XaiRestClient(authenticationCredentialsProviders);
+            await client.ExecuteWithErrorHandling(new RestRequest("/api-key", Method.Get));
             return new ConnectionValidationResponse { IsValid = true };
         }
         catch (Exception ex)

@@ -15,14 +15,12 @@ namespace Tests.XAI
 
             var request = new ChatCompletionRequest
             {
-                Model = "grok-2-1212",
+                Model = "grok-3",
                 Messages = new List<string> { "Hello, how are you?" },
                 MaxTokens = 50,
                 SystemPrompt = "You are a helpful assistant.",
                 Temperature = 0.7,
                 TopP = 1.0,
-                PresencePenalty = 0,
-                FrequencyPenalty = 0,
                 Stop = null
             };
 

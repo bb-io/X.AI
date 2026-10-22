@@ -4,7 +4,7 @@ Blackbird is the new automation backbone for the language technology industry. B
 
 ## Introduction
 <!-- begin docs -->
-The xAI application allows users to integrate AI-driven completion and chat capabilities into their workflows. Whether you're automating repetitive tasks or generating insights, this app makes advanced AI tools accessible.
+The xAI application allows users to integrate AI-driven translation, editing, review, shortening, summarizing, chat and image generation into their workflows. Whether you're automating repetitive tasks or generating insights, this app makes advanced AI tools accessible.
 
 ## Before Setting Up
 
@@ -23,29 +23,42 @@ Format: `xai-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`.
 
 ## Actions
 
-**1. Create Completion**
-Input Parameters:
-- Model: Choose the model.
-- Prompt: Text input to guide the model.
-- Max Tokens: Limit the length of the response. (Optional)
-- Temperature: Adjust randomness in output (0 = deterministic, 1 = creative). (Optional)
-- Top P: Controls nucleus sampling. (Optional)
-- Stop Sequences: Specify sequences to stop the completion. (Optional)
-  
-**Use Case:** Generate creative content, summarize text, or answer questions.
+### Translation
 
-**2. Create Chat Completion**
-Input Parameters:
-- Model: Choose the desired model.
-- Input: Provide a conversation messages.
-- Max Tokens: Specify the response length. (Optional)
-- Temperature: Adjust randomness in output (0 = deterministic, 1 = creative). (Optional)
-- Top P: Controls nucleus sampling. (Optional)
-- Stop Sequences: Specify sequences to stop the completion. (Optional)
-- Presence Penalty: Higher values encourage the model to explore new topics and reduce repetition. (Optional)
-- Frequency Penalty: Higher values discourage the model from repeating the same words or phrases multiple times in the same response. (Optional)
-  
-**Use Case:** Chatbots, virtual assistants, or conversational AI.
+- **Translate** translates a file (XLIFF, HTML and other formats supported by Blackbird) into the target language. Only segments without a translation are sent to the model; locked units are skipped. Optional inputs: source language, additional instructions, glossary, output file handling, bucket size and document summary.
+- **Translate text** translates a single text.
+
+### Editing
+
+- **Edit** post-edits the translated segments of a file and marks them as reviewed.
+- **Edit text** post-edits a single translation. A target audience can be given in addition to the instructions.
+
+### Review
+
+- **Review** scores the translated and reviewed segments of a file between 0 and 1. Segments that score at or above the **Score threshold** (default 0.8) are set to final.
+- **Review text** scores a single translation between 0 and 1.
+
+### Shortening
+
+- **Shorten content** shortens translations that are longer than their size restriction (`slr:sizeRestriction`) or the **Maximum length** input, retrying up to **Retries** times (default 3). Units that never fit are left unchanged.
+- **Shorten text** shortens a text to the **Maximum length**. The action fails when the text never fits.
+
+### Summarizing
+
+- **Summarize** summarizes the content of a file, using the translation where there is one. Optional inputs: language, maximum words, target audience, additional instructions and glossary.
+- **Summarize text** summarizes a single text.
+
+### Chat completions
+
+- **Chat completion** generates an answer to a message, with an optional system prompt, previous messages, max tokens, temperature, top P, stop sequences, presence penalty and frequency penalty. Reasoning models do not accept presence penalty, frequency penalty or stop sequences.
+
+### Images
+
+- **Generate image** generates an image from a prompt.
+
+All translation, editing, review, shortening and summarizing actions accept an optional **Reasoning effort** (none, low, medium, high, extra high). Only some models support it, and not every model supports every value; the action fails before any processing when the chosen model does not support the value. When it is empty, the model's own default is used.
+
+Problems that do not stop an action, such as segments the model could not process, are written to the log as warnings. File actions then finish and leave those segments unchanged; text actions fail with the warnings as the error message.
 
 For more in-depth information about action consult the xAI [API reference](https://docs.x.ai/api).
 

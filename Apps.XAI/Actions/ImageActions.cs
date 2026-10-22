@@ -15,7 +15,7 @@ public class ImageActions(InvocationContext invocationContext, IFileManagementCl
     [Action("Generate image", Description = "Generates an image based on a prompt")]
     public async Task<ImageResponse> GenerateImage([ActionParameter] ImageGenerationRequest input)
     {
-        var model = input.Model ?? "grok-2-image-1212";
+        var model = input.Model ?? "grok-imagine-image";
         var request = new RestRequest("/images/generations", Method.Post);
 
         request.AddJsonBody(new
