@@ -15,7 +15,7 @@ namespace Tests.XAI
             {
                 Prompt = "A beautiful sunset over the mountains",
                 N = 1,
-                Model = "grok-2-image-1212"
+                Model = "grok-imagine-image"
             };
             var response = await action.GenerateImage(request);
             Assert.IsNotNull(response);

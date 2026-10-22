@@ -1,33 +1,41 @@
-﻿using Apps.XAI.Models.Response;
+﻿using System.Globalization;
+using System.Net;
+using Apps.XAI.Models.Response;
 using Blackbird.Applications.Sdk.Common.Authentication;
 using Blackbird.Applications.Sdk.Common.Exceptions;
 using Blackbird.Applications.Sdk.Utils.RestSharp;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Polly;
+using Polly.Retry;
 using RestSharp;
 
 namespace Apps.XAI.Api
 {
     public class XaiRestClient : BlackBirdRestClient
     {
+        private static readonly ResiliencePipeline<RestResponse> RateLimitPipeline = new ResiliencePipelineBuilder<RestResponse>()
+            .AddRetry(new RetryStrategyOptions<RestResponse>
+            {
+                MaxRetryAttempts = 5,
+                Delay = TimeSpan.FromSeconds(2),
+                BackoffType = DelayBackoffType.Exponential,
+                UseJitter = true,
+                ShouldHandle = new PredicateBuilder<RestResponse>()
+                    .HandleResult(response => response.StatusCode == HttpStatusCode.TooManyRequests),
+                DelayGenerator = args => ValueTask.FromResult(RetryAfter(args.Outcome.Result))
+            })
+            .Build();
+
         public XaiRestClient(IEnumerable<AuthenticationCredentialsProvider> authProviders)
-            : base(new RestClientOptions { ThrowOnAnyError = false, BaseUrl = new Uri("https://api.X.AI/v1") })
+            : base(new RestClientOptions { ThrowOnAnyError = false, BaseUrl = new Uri("https://api.x.ai/v1") })
         {
             this.AddDefaultHeader("Authorization", $"Bearer {authProviders.First(x => x.KeyName == "apiKey").Value}");
         }
 
-        protected override Exception ConfigureErrorException(RestResponse response)
-        {
-            try
-            {
-                var json = response.Content;
-                var error = JsonConvert.DeserializeObject<ErrorResponse>(response.Content);
-                return new(error.ToString());
-            }
-            catch
-            {
-                return new PluginApplicationException($"Failed to parse response. Content: {response.Content}");
-            }
-        }
+        protected override Exception ConfigureErrorException(RestResponse response) =>
+            new PluginApplicationException(ErrorMessage(response.Content)
+                ?? $"Status code: {(int)response.StatusCode}, Content: {response.Content}");
 
         public override async Task<T> ExecuteWithErrorHandling<T>(RestRequest request)
         {
@@ -43,7 +51,9 @@ namespace Apps.XAI.Api
 
         public override async Task<RestResponse> ExecuteWithErrorHandling(RestRequest request)
         {
-            RestResponse restResponse = await ExecuteAsync(request);
+            var restResponse = await RateLimitPipeline.ExecuteAsync(
+                async cancellationToken => await ExecuteAsync(request, cancellationToken));
+
             if (!restResponse.IsSuccessStatusCode)
             {
                 throw ConfigureErrorException(restResponse);
@@ -54,17 +64,9 @@ namespace Apps.XAI.Api
 
         public async Task<CompletionResponse> ExecuteCompletionRequest(RestRequest request)
         {
-            CompletionResponse? response = null;
-            try
-            {
-                response = await ExecuteWithErrorHandling<CompletionResponse>(request);
-            }
-            catch (Exception e)
-            {
-                throw new PluginApplicationException(e.Message);
-            }
+            var response = await ExecuteWithErrorHandling<CompletionResponse>(request);
 
-            if (response?.Choices == null || !response.Choices.Any())
+            if (response.Choices == null || !response.Choices.Any())
             {
                 throw new PluginApplicationException("The xAI API is not responding as expected.");
             }
@@ -79,5 +81,24 @@ namespace Apps.XAI.Api
 
             return response;
         }
+
+        private static string? ErrorMessage(string? content)
+        {
+            try
+            {
+                var error = JObject.Parse(content ?? string.Empty)["error"];
+                return error?.Type == JTokenType.Object ? error["message"]?.ToString() : error?.ToString();
+            }
+            catch (JsonReaderException)
+            {
+                return null;
+            }
+        }
+
+        private static TimeSpan? RetryAfter(RestResponse? response) =>
+            response?.Headers?.FirstOrDefault(header => string.Equals(header.Name, "Retry-After", StringComparison.OrdinalIgnoreCase))?.Value?.ToString() is { } value
+            && double.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out var seconds)
+                ? TimeSpan.FromSeconds(Math.Min(seconds, 60))
+                : null;
     }
 }

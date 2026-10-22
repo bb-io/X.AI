@@ -19,9 +19,9 @@ namespace Apps.XAI.DataSourceHandlers
         public async Task<Dictionary<string, string>> GetDataAsync(DataSourceContext context,
              CancellationToken cancellationToken)
         {
-            var request = new RestRequest("/models", Method.Get);
-            var response = await Client.ExecuteWithErrorHandling<ModelsListResponse>(request);
-            return response.Data.ToDictionary(m => m.Id, m => m.Id);
+            var request = new RestRequest("/language-models", Method.Get);
+            var response = await Client.ExecuteWithErrorHandling<ModelsResponse>(request);
+            return response.Models.ToDictionary(m => m.Id, m => m.Id);
         }
     }
 }
