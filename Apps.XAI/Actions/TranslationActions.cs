@@ -65,7 +65,8 @@ public class TranslationActions(InvocationContext invocationContext, IFileManage
             OutputFileHandling = input.OutputFileHandling,
             GlossaryTbx = glossaryFile,
             AdditionalInstructions = input.AdditionalInstructions,
-            Summary = SummaryOptions.FromToggle(input.GenerateDocumentSummary)
+            Summary = SummaryOptions.FromToggle(input.GenerateDocumentSummary),
+            IncludeSegmentNotes = input.IncludeSegmentNotes ?? false
         }));
 
         var content = result.Content;

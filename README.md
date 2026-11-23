@@ -25,7 +25,7 @@ Format: `xai-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`.
 
 ### Translation
 
-- **Translate** translates a file (XLIFF, HTML and other formats supported by Blackbird) into the target language. Only segments without a translation are sent to the model; locked units are skipped. Optional inputs: source language, additional instructions, glossary, output file handling, bucket size and document summary.
+- **Translate** translates a file (XLIFF, HTML and other formats supported by Blackbird) into the target language. Only segments without a translation are sent to the model; locked units are skipped. Optional inputs: source language, additional instructions, glossary, output file handling, bucket size and document summary. Turn on **Include segment notes** to send each segment's notes, for example the message context (msgctxt) of PO files, to the model as context (off by default).
 - **Translate text** translates a single text.
 
 ### Editing
@@ -35,7 +35,7 @@ Format: `xai-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`.
 
 ### Review
 
-- **Review** scores the translated and reviewed segments of a file between 0 and 1. Segments that score at or above the **Score threshold** (default 0.8) are set to final.
+- **Review** scores the translated and reviewed segments of a file between 0 and 1. Segments that score at or above the **Score threshold** (default 0.8) are set to final. Turn on **Include segment notes** to send each segment's notes, for example the message context (msgctxt) of PO files, to the model as context (off by default).
 - **Review text** scores a single translation between 0 and 1.
 
 ### Shortening
